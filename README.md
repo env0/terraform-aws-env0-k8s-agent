@@ -5,6 +5,28 @@ This repo contains a set of [modules folder](https://github.com/env0/terraform-e
 - [modules](https://github.com/env0/terraform-env0-k8s-agent-aws/tree/main/modules):  This folder contains several standalone, reusable, production-grade modules that you can use to deploy env0 Agent.
 - [examples](https://github.com/env0/terraform-env0-k8s-agent-aws/tree/main/examples): This folder shows examples of different ways to combine the modules in the modules folder to deploy env0 Agent on AWS.
 
+To use this module in your own configuration create an input variable `modules_info`:
+```terraform
+module "my-cluster" {
+  source = "github.com/env0/k8s-modules//aws"
+
+  region            = var.region
+  cluster_name      = var.cluster_name
+  modules_info      = var.modules_info
+}
+```
+
+then use `terraform-env0-k8s-agent-aws` in your configuration:
+```terraform
+module "my-agent-eks-cluster" {
+  source = "terraform-env0-k8s-agent-aws"
+
+  region            = var.region
+  cluster_name      = var.cluster_name
+  modules_info      = var.modules_info
+}
+```
+
 # Who maintains this Module?
 This Module is maintained by [env0](www.env0.com). if you're looking for help or commercial support, send an email to support@env0.com 
 
