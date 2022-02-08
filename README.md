@@ -6,20 +6,34 @@ This repo contains a set of [modules folder](https://github.com/env0/terraform-e
 - [examples](https://github.com/env0/terraform-env0-k8s-agent-aws/tree/main/examples): This folder shows examples of different ways to combine the modules in the modules folder to deploy env0 Agent on AWS.
 
 To use this module in your own configuration create an input variable `modules_info`:
-```terraform
-module "my-cluster" {
-  source = "github.com/env0/k8s-modules//aws"
-
-  region            = var.region
-  cluster_name      = var.cluster_name
-  modules_info      = var.modules_info
+```json
+{
+	"vpc": {
+		"create": false,
+		"id": "vpc-092f26b605570e54e",
+		"private_subnets": ["subnet-091d4e565774c76bc", "subnet-095cdaad02d57a8d6", "subnet-01c8446e75547eeef", "subnet-0729b32d54b3216c4", "subnet-01e93749f16d100bf"]
+	},
+	"efs": {
+		"create": false,
+		"id": "fs-0ed81547beb39d684"
+	},
+	"eks": {
+		"create": false,
+		"cluster_id": "elad-eks8"
+	},
+	"autoscaler": {
+		"create": false
+	},
+	"csi_driver": {
+		"create": false
+	}
 }
 ```
 
 then use `terraform-env0-k8s-agent-aws` in your configuration:
 ```terraform
 module "my-agent-eks-cluster" {
-  source = "terraform-env0-k8s-agent-aws"
+  source  = "env0/env0-k8s-agent/aws"
 
   region            = var.region
   cluster_name      = var.cluster_name
