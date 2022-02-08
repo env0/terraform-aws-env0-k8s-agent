@@ -10,16 +10,16 @@ To use this module in your own configuration create an input variable `modules_i
 {
 	"vpc": {
 		"create": false,
-		"id": "vpc-092f26b605570e54e",
-		"private_subnets": ["subnet-091d4e565774c76bc", "subnet-095cdaad02d57a8d6", "subnet-01c8446e75547eeef", "subnet-0729b32d54b3216c4", "subnet-01e93749f16d100bf"]
+		"id": "vpc-092f26b60590er54e",
+		"private_subnets": ["subnet-091d4e5655cfc76bc", "subnet-095cdaad05gvba8d6", "subnet-01c8446e553m7eeef", "subnet-0729b32d5901a16c4", "subnet-01e93749f145780bf"]
 	},
 	"efs": {
 		"create": false,
-		"id": "fs-0ed81547beb39d684"
+		"id": "fs-0ed81543dff9d682"
 	},
 	"eks": {
 		"create": false,
-		"cluster_id": "elad-eks8"
+		"cluster_id": "some-eks"
 	},
 	"autoscaler": {
 		"create": false
