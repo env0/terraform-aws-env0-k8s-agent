@@ -1,1 +1,2 @@
 # Agent installation on aws EKS with all modules provisioned by user
+Configuration in this directory creates an AWS agent with all the sub-modules provisioned by the user (VPC, EKS, EFS, Autoscaler, CSI-Driver), the only thing left to our module is to install the agent.

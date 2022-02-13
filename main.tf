@@ -59,3 +59,10 @@ module "csi_driver" {
   reclaim_policy = var.reclaim_policy
   cluster_name   = var.cluster_name
 }
+
+module "agent" {
+  depends_on      = [module.autoscaler, module.csi_driver]
+  source          = "./agent"
+  env0_values     = var.env0_values
+  customer_values = var.customer_values
+}

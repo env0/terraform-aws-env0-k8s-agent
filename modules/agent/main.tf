@@ -1,5 +1,4 @@
 resource "helm_release" "agent" {
-  depends_on       = [module.my-agent-cluster]
   name             = "env0-agent"
   namespace        = "env0-agent"
   create_namespace = true
