@@ -2,6 +2,10 @@ variable "region" {}
 
 variable "cluster_name" {}
 
+variable "is_self_hosted" {
+  default = true
+}
+
 variable "map_roles" {
   description = "Additional IAM roles to add to the aws-auth configmap."
 

@@ -14,12 +14,19 @@ module "eks" {
   subnets         = data.aws_subnet_ids.private.ids
   enable_irsa     = true
   vpc_id          = var.vpc_id
+  is_self_hosted  = var.is_self_hosted
 
   cluster_enabled_log_types = ["api", "scheduler", "controllerManager"] # https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
 
   node_groups_defaults = {
     ami_type  = "AL2_x86_64"
     disk_size = 50
+    create_launch_template = true
+    metadata_http_tokens = var.is_self_hosted == true ? "optional" : "required"
+    metadata_http_put_response_hop_limit = 1
+    addtiional_tags = {
+      Name = var.cluster_name
+    }
   }
 
   workers_group_defaults = {

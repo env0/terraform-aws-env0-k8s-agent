@@ -21,14 +21,15 @@ module "vpc" {
 
 module "eks" {
   depends_on = [module.vpc]
-  count         = var.modules_info.eks.create ? 1 : 0
-  source     = "./eks"
+  count          = var.modules_info.eks.create ? 1 : 0
+  source         = "./eks"
 
-  vpc_id        = local.vpc_id
-  cluster_name  = var.cluster_name
-  map_roles     = var.map_roles
-  min_capacity  = var.min_capacity
-  instance_type = var.instance_type
+  is_self_hosted = var.is_self_hosted
+  vpc_id         = local.vpc_id
+  cluster_name   = var.cluster_name
+  map_roles      = var.map_roles
+  min_capacity   = var.min_capacity
+  instance_type  = var.instance_type
 }
 
 module "efs" {
