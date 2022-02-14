@@ -14,7 +14,6 @@ module "eks" {
   subnets         = data.aws_subnet_ids.private.ids
   enable_irsa     = true
   vpc_id          = var.vpc_id
-  is_self_hosted  = var.is_self_hosted
 
   cluster_enabled_log_types = ["api", "scheduler", "controllerManager"] # https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html
 
