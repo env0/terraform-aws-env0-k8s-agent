@@ -27,7 +27,7 @@ module "efs" {
       to_port                  = 2049
       protocol                 = "tcp"
       cidr_blocks              = []
-      source_security_group_id = module.eks.cluster_primary_security_group_id
+      source_security_group_id = data.aws_eks_cluster.cluster.vpc_config[0].cluster_primary_security_group_id
       description              = "Allow ingress traffic to EFS from primary EKS security group"
     },
     {
@@ -36,7 +36,7 @@ module "efs" {
       to_port                  = 2049
       protocol                 = "tcp"
       cidr_blocks              = []
-      source_security_group_id = module.eks.worker_security_group_id
+      source_security_group_id = data.aws_eks_cluster.cluster.vpc_config[0].worker_security_group_id
       description              = "Allow ingress traffic to EFS from EKS worker security group"
     },
     {
