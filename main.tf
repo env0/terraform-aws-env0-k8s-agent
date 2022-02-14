@@ -41,8 +41,8 @@ module "efs" {
   vpc_id                            = local.vpc_id
   cluster_name                      = var.cluster_name
   subnets                           = local.private_subnets
-  worker_security_group_id          = module.eks.worker_security_group_id
-  cluster_primary_security_group_id = module.eks.cluster_primary_security_group_id
+  worker_security_group_id          = module.eks[0].worker_security_group_id
+  cluster_primary_security_group_id = module.eks[0].cluster_primary_security_group_id
 }
 
 module "autoscaler" {
