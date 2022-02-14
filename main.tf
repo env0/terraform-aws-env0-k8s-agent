@@ -11,7 +11,7 @@ locals {
 
 module "vpc" {
   count           = var.modules_info.vpc.create ? 1 : 0
-  source          = "./vpc"
+  source          = "./modules/vpc"
 
   cluster_name    = var.cluster_name
   cidr            = var.cidr
@@ -22,7 +22,7 @@ module "vpc" {
 module "eks" {
   depends_on = [module.vpc]
   count          = var.modules_info.eks.create ? 1 : 0
-  source         = "./eks"
+  source         = "./modules/eks"
 
   is_self_hosted = var.is_self_hosted
   vpc_id         = local.vpc_id
@@ -35,7 +35,7 @@ module "eks" {
 module "efs" {
   count        = var.modules_info.efs.create ? 1 : 0
   depends_on   = [module.eks, module.vpc]
-  source       = "./efs"
+  source       = "./modules/efs"
 
   region       = var.region
   vpc_id       = local.vpc_id
@@ -46,7 +46,7 @@ module "efs" {
 module "autoscaler" {
   count      = var.modules_info.autoscaler.create ? 1 : 0
   depends_on = [module.eks]
-  source     = "./autoscaler"
+  source     = "./modules/autoscaler"
 
   cluster_name = var.cluster_name
 }
@@ -54,7 +54,7 @@ module "autoscaler" {
 module "csi_driver" {
   count      = var.modules_info.csi_driver.create ? 1 : 0
   depends_on = [module.efs]
-  source     = "./csi-driver"
+  source     = "./modules/csi-driver"
 
   efs_id         = local.efs_id
   reclaim_policy = var.reclaim_policy
