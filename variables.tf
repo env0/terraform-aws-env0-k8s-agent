@@ -1,8 +1,13 @@
-variable "region" {}
+variable "region" {
+  description = "Region of the EKS cluster"
+}
 
-variable "cluster_name" {}
+variable "cluster_name" {
+  description = "Name of the new/provisoned EKS cluster"
+}
 
 variable "is_self_hosted" {
+  description = "Is this agent installed on the user AWS account(self hosted) or on env0's"
   default = true
 }
 
@@ -42,14 +47,17 @@ variable "public_subnets" {
 }
 
 variable "instance_type" {
+  description = "instance type associated with the EKS cluster's node group, not needed if eks is provisioned by user"
   default = "t3a.2xlarge" # 8vCPUs 32GB
 }
 
 variable "reclaim_policy" {
+  description = "Indicates the reclaim policy to use for the kubernetes storage class, not needed if csi_driver is provisioned by user"
   default = "Retain"
 }
 
 variable "modules_info" {
+  description = "Indicates which sub-modules are provisioned by the user and which are to be created inline by env0, there are sub-modules that are depended on other sub-modules, for example it doesn't make any sense to proviosn EKS without a VPC"
   type = object({
     vpc = object({
       create = bool
