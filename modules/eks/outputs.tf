@@ -17,3 +17,9 @@ output "worker_security_group_id" {
   value = module.eks.worker_security_group_id
   description = "EKS workers security group id"
 }
+
+output "additional_cluster_security_group_id" {
+  value = module.eks.cluster_security_group_id
+  description = "Additional EKS security group id"
+}
+

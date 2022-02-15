@@ -43,7 +43,7 @@ module "efs" {
   subnets                              = local.private_subnets
   worker_security_group_id             = module.eks[0].worker_security_group_id
   cluster_primary_security_group_id    = module.eks[0].cluster_primary_security_group_id
-  cluster_additional_security_group_id = module.eks[0].cluster_security_group_id
+  additional_cluster_security_group_id = module.eks[0].additional_cluster_security_group_id
 }
 
 module "autoscaler" {

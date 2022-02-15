@@ -45,7 +45,7 @@ module "efs" {
       to_port                  = 2049
       protocol                 = "tcp"
       cidr_blocks              = []
-      source_security_group_id = var.cluster_additional_security_group_id
+      source_security_group_id = var.additional_cluster_security_group_id
       description              = "Allow ingress traffic to EFS from additional EKS security group"
     }
   ]
