@@ -33,16 +33,17 @@ module "eks" {
 }
 
 module "efs" {
-  count                             = var.modules_info.efs.create ? 1 : 0
-  depends_on                        = [module.eks, module.vpc]
-  source                            = "./modules/efs"
-          
-  region                            = var.region
-  vpc_id                            = local.vpc_id
-  cluster_name                      = var.cluster_name
-  subnets                           = local.private_subnets
-  worker_security_group_id          = module.eks[0].worker_security_group_id
-  cluster_primary_security_group_id = module.eks[0].cluster_primary_security_group_id
+  count                                = var.modules_info.efs.create ? 1 : 0
+  depends_on                           = [module.eks, module.vpc]
+  source                               = "./modules/efs"
+             
+  region                               = var.region
+  vpc_id                               = local.vpc_id
+  cluster_name                         = var.cluster_name
+  subnets                              = local.private_subnets
+  worker_security_group_id             = module.eks[0].worker_security_group_id
+  cluster_primary_security_group_id    = module.eks[0].cluster_primary_security_group_id
+  cluster_additional_security_group_id = module.eks[0].cluster_security_group_id
 }
 
 module "autoscaler" {
