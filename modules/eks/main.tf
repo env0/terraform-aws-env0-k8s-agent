@@ -20,6 +20,12 @@ module "eks" {
   node_groups_defaults = {
     ami_type  = "AL2_x86_64"
     disk_size = 50
+    create_launch_template = true
+    metadata_http_tokens = var.is_self_hosted == true ? "optional" : "required"
+    metadata_http_put_response_hop_limit = 1
+    addtiional_tags = {
+      Name = var.cluster_name
+    }
   }
 
   workers_group_defaults = {

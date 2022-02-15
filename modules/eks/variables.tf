@@ -1,5 +1,9 @@
 variable "cluster_name" {}
 
+variable "is_self_hosted" {
+  default = true
+}
+
 variable "vpc_id" {
   description = "The id of the specific VPC to using"
 }
