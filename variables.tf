@@ -118,17 +118,17 @@ variable "modules_info" {
   }
 
   validation {
-    condition = !(!var.modules_info.efs.create && var.modules_info.efs.create)
-    error_message = "You can't proviosn efs without eks."
+    condition = !(!var.modules_info.efs.create && var.modules_info.eks.create)
+    error_message = "You can't provision efs without eks."
   }
 
   validation {
     condition = !(!var.modules_info.autoscaler.create && var.modules_info.eks.create)
-    error_message = "You can't proviosn autoscaler without eks."
+    error_message = "You can't provision autoscaler without eks."
   }
 
   validation {
     condition = !(!var.modules_info.csi_driver.create && var.modules_info.efs.create)
-    error_message = "You can't proviosn csi_driver without efs."
+    error_message = "You can't provision csi_driver without efs."
   }
 }
